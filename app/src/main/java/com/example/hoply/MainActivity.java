@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hoply.database.Posts;
-import com.example.hoply.repository.PostRepository;
 import com.example.hoply.viewmodel.PostAdapter;
 import com.example.hoply.viewmodel.PostViewModel;
 
@@ -22,13 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Posts newPost = new Posts();
-        newPost.user_id = "Bastian";
-        newPost.content = "Hey";
-        newPost.timestamp = System.currentTimeMillis();
-        PostRepository repo = new PostRepository(getApplication());
-        repo.insert(newPost);
 
         RecyclerView recyclerView = findViewById(R.id.feed);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,6 +36,5 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setPosts(posts);
             }
         });
-
     }
 }
