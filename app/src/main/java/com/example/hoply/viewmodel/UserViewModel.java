@@ -6,25 +6,25 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.hoply.database.Posts;
+import com.example.hoply.database.Users;
 import com.example.hoply.repository.Repository;
 
 import java.util.List;
 
-public class PostViewModel extends AndroidViewModel {
+public class UserViewModel extends AndroidViewModel {
     private Repository repository;
-    private LiveData<List<Posts>> allPosts;
+    private LiveData<List<Users>> allUsers;
 
-    public PostViewModel(@NonNull Application application){
+    public UserViewModel(@NonNull Application application){
         super(application);
         repository = new Repository(application);
-        allPosts = repository.getAllPosts();
+        allUsers = repository.getAllUsers();
     }
 
-    public void insert(Posts posts){
-        repository.insertPost(posts);
+    public void insert(Users users){
+        repository.insertUser(users);
     }
-    public LiveData<List<Posts>> getAllPosts(){
-        return allPosts;
+    public LiveData<List<Users>> getAllUsers(){
+        return allUsers;
     }
 }

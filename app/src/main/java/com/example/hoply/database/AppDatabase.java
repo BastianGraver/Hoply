@@ -2,6 +2,7 @@ package com.example.hoply.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -24,14 +25,16 @@ public abstract class AppDatabase extends RoomDatabase {
                     .addCallback(roomCallback)
                     .allowMainThreadQueries()
                     .build();
+            Log.d("Bastian", "db build");
         }
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
         @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+        public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
+            Log.d("Bastian", "callback");
             new PopulateDbAsyncTask(instance).execute();
         }
     };
@@ -41,10 +44,12 @@ public abstract class AppDatabase extends RoomDatabase {
 
         private PopulateDbAsyncTask(AppDatabase db) {
             postDao = db.postsDao();
+            Log.d("Bastian", "Task");
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
+            Log.d("Bastian", "Fallback");
             Posts post = new Posts();
             post.timestamp = System.currentTimeMillis();
             post.content = "Hey Bastian";

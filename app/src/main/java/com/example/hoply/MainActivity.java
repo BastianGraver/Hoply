@@ -1,7 +1,9 @@
 package com.example.hoply;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,9 +34,17 @@ public class MainActivity extends AppCompatActivity {
         postViewModel = new ViewModelProvider(this).get(PostViewModel.class);
         postViewModel.getAllPosts().observe(this, new Observer<List<Posts>>() {
             @Override
-            public void onChanged(List<Posts> posts) {
+            public void onChanged(@NonNull List<Posts> posts) {
                 adapter.setPosts(posts);
             }
         });
+    }
+
+    public void addPost(View view){
+        Posts newpost = new Posts();
+        newpost.user_id = "bastian";
+        newpost.content = "Main";
+        newpost.timestamp = System.currentTimeMillis();
+        postViewModel.insert(newpost);
     }
 }

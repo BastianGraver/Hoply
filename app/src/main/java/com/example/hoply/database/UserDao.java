@@ -1,5 +1,6 @@
 package com.example.hoply.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -10,7 +11,7 @@ import java.util.List;
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM Users")
-    List<Users> getAll();
+    LiveData<List<Users>> getAll();
 
     @Query("SELECT * FROM Users where id = :input")
     List<Users> findId(String input);
