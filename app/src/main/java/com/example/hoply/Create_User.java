@@ -27,10 +27,7 @@ public class Create_User extends AppCompatActivity {
     }
 
     public void addUser(View view){
-        Users newUser = new Users();
-        newUser.name = name_input.getText().toString();
-        newUser.id = username_input.getText().toString();
-        newUser.timestamp = System.currentTimeMillis();
+        Users newUser = new Users(username_input.getText().toString(), name_input.getText().toString());
         userViewModel.insert(newUser);
         Intent switchActivity = new Intent(this, Start.class);
         startActivity(switchActivity);

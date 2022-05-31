@@ -8,7 +8,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hoply.database.Users;
 import com.example.hoply.viewmodel.LoginViewModel;
+
+import java.util.List;
 
 public class Login extends AppCompatActivity {
     EditText login;
@@ -24,8 +27,10 @@ public class Login extends AppCompatActivity {
     }
 
     public void login(View view){
-        if (loginViewModel.getLoginUser(login.getText().toString()).size() == 1){
-            Intent switchActivity = new Intent(this, MainActivity.class);
+        List<Users> currentUser = loginViewModel.getLoginUser(login.getText().toString());
+        if (currentUser.size() == 1){
+            Intent switchActivity = new Intent(this, User_page.class);
+            switchActivity.putExtra("Username", currentUser.get(0));
             startActivity(switchActivity);
         }
     }

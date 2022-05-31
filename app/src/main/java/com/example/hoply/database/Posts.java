@@ -2,13 +2,18 @@ package com.example.hoply.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
  /*(foreignKeys = {@ForeignKey(entity = Users.class,
         parentColumns = "id",
         childColumns = "user_id",
         onDelete = ForeignKey.CASCADE)
 })*/
-@Entity
+@Entity  (foreignKeys = {@ForeignKey(entity = Users.class,
+        parentColumns = "id",
+        childColumns = "user_id",
+        onDelete = ForeignKey.CASCADE)
+})
 public class Posts {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

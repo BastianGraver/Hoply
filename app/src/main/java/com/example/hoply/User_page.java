@@ -1,5 +1,6 @@
 package com.example.hoply;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,18 +12,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hoply.database.Posts;
+import com.example.hoply.database.Users;
 import com.example.hoply.viewmodel.PostAdapter;
 import com.example.hoply.viewmodel.PostViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class User_page extends AppCompatActivity {
     private PostViewModel postViewModel;
+    private Users currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.user_page);
 
         RecyclerView recyclerView = findViewById(R.id.feed);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -38,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setPosts(posts);
             }
         });
+
+        currentUser = getIntent().getParcelableExtra("Username");
     }
 
     public void addPost(View view){
         Posts newpost = new Posts();
-        newpost.user_id = "bastian";
+        newpost.user_id = currentUser.id;
         newpost.content = "Main";
         newpost.timestamp = System.currentTimeMillis();
         postViewModel.insert(newpost);

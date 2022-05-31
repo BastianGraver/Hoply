@@ -1,5 +1,6 @@
 package com.example.hoply.viewmodel;
 
+import android.app.Application;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     private List<Posts> posts = new ArrayList<>();
+
 
     @NonNull
     @Override
