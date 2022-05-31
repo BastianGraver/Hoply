@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM Users")
-    LiveData<List<Users>> getAll();
+    List<Users> getAll();
 
     @Query("SELECT * FROM Users where id = :input")
     List<Users> findId(String input);

@@ -19,7 +19,6 @@ public class LoginViewModel extends AndroidViewModel {
         repository = new Repository(application);
     }
 
-
     public List<Users> getLoginUser(String login){
         Log.d("Bastian", "Login");
         return repository.findLoginUser(login);

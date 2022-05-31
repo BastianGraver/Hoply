@@ -18,7 +18,7 @@ public class Repository {
     private PostDao postDao;
     private UserDao userDao;
     private LiveData<List<Posts>> allPosts;
-    private LiveData<List<Users>> allUsers;
+    private List<Users> allUsers;
 
     public Repository(Application application){
         AppDatabase database = AppDatabase.getInstance(application);
@@ -41,7 +41,7 @@ public class Repository {
         new InsertUserAsyncTask(userDao).execute(user);
     }
 
-    public LiveData<List<Users>> getAllUsers() {
+    public List<Users> getAllUsers() {
         return allUsers;
     }
 

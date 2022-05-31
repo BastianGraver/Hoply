@@ -26,6 +26,7 @@ public class Login extends AppCompatActivity {
     public void login(View view){
         if (loginViewModel.getLoginUser(login.getText().toString()).size() == 1){
             Intent switchActivity = new Intent(this, MainActivity.class);
+            startActivity(switchActivity);
         }
     }
 }
