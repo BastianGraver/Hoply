@@ -46,10 +46,18 @@ public class User_page extends AppCompatActivity {
     }
 
     public void addPost(View view){
-        Posts newpost = new Posts();
-        newpost.user_id = currentUser.id;
-        newpost.content = "Main";
-        newpost.timestamp = System.currentTimeMillis();
+        Posts newpost = new Posts(currentUser.id, "Main");
         postViewModel.insert(newpost);
     }
+
+    public void clear(View view){
+        postViewModel.nukeTable();
+    }
+
+    public void toCreatePost(View view){
+        Intent switchActivity = new Intent(this, Create_Post.class);
+        switchActivity.putExtra("user", currentUser);
+        startActivity(switchActivity);
+    }
+
 }

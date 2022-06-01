@@ -37,6 +37,9 @@ public class Repository {
         return allPosts;
     }
 
+    public void nukeAllPosts() {
+        new NukeAllPostsAsyncTask(postDao).execute();
+    }
     public void insertUser(Users user) {
         new InsertUserAsyncTask(userDao).execute(user);
     }
@@ -74,6 +77,22 @@ public class Repository {
             return null;
         }
     }
+
+    // Removes all posts
+    private static class NukeAllPostsAsyncTask extends AsyncTask<Void, Void, Void> {
+        private PostDao postDao;
+
+        private NukeAllPostsAsyncTask(PostDao postDao) {
+            this.postDao = postDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            postDao.nukeTable();
+            return null;
+        }
+    }
+
 
     public List<Users> findLoginUser(String login){
         Log.d("Bastian", "findUserLogin");

@@ -27,4 +27,7 @@ public class PostViewModel extends AndroidViewModel {
     public LiveData<List<Posts>> getAllPosts(){
         return allPosts;
     }
+    public void nukeTable(){
+        repository.nukeAllPosts();
+    }
 }

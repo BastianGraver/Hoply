@@ -24,4 +24,5 @@ public interface PostDao {
 
     @Delete
     void delete(Posts post);
+
 }
